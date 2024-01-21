@@ -1,0 +1,37 @@
+.card{
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 1em;
+    margin: 2rem 23rem;
+    width: 50%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    position: relative;
+}
+.input-file{
+    display: none;
+}
+.drop-area{
+    padding: 20px;
+  border: 1px dashed #0975f9;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  &.drag-active {
+    background-color: #e0f7fa; /* Highlight when files are dragged over */
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+}
