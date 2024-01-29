@@ -15,7 +15,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/upload" element={<UploadFile />} />
           <Route path="/viewFile" element={<ViewFile />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route  path="/login" element={<LoginPage />} index={true}/>
         </Routes>
       </Router>
     </div>

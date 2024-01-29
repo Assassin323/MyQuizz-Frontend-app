@@ -1,31 +1,39 @@
 // import { Grid, Paper, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { Paper, TextField, Button, Link, Typography } from '@mui/material';
-import './LoginPage.css'
+import { Paper, TextField, Button, Link, Typography } from "@mui/material";
+import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState(null);
 
-  const handleLogin = () => {
-    // Check the credentials (for demo purposes, using hardcoded values)
-    if (username === 'admin' && password === 'admin') {
-      // If credentials are correct, navigate to the uploadFile page
-      localStorage.setItem('loggedInUser', username); // You can store user information in localStorage or use a state management solution
-      navigate('/');
-    } else {
-      // Handle invalid login here (e.g., show an error message)
-      console.log('Invalid credentials');
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:3002/login", {
+        username,
+        password,
+      });
+  
+      if (response.status === 200) {
+        localStorage.setItem("loggedInUser", response.data.message); 
+        navigate("/");
+        setErrMsg("");
+      } else {
+        setErrMsg("Invalid Credentials");
+      }
+    } catch (error) {
+      setErrMsg("Internal server error");
     }
   };
 
   return (
     <div className="root">
       <Paper className="paper" elevation={3}>
-        <Typography variant="h3" gutterBottom style={{ textAlign: 'center' }}>
+        <Typography variant="h3" gutterBottom style={{ textAlign: "center" }}>
           Login
         </Typography>
         <form className="form">
@@ -39,6 +47,7 @@ const LoginPage = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+        
           <br />
           <TextField
             required
@@ -50,13 +59,27 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+         
           <br />
           <Button variant="contained" color="primary" onClick={handleLogin}>
             Login
           </Button>
+          {errMsg && (
+            <Typography
+              variant="body2"
+              color="error"
+              style={{ textAlign: "center", marginTop: "10px" }}
+            >
+              {errMsg}
+            </Typography>
+          )}
         </form>
-        <Typography className="registerLink" variant="body2" style={{ textAlign: 'center' }}>
-          Don't have an account?{' '}
+        <Typography
+          className="registerLink"
+          variant="body2"
+          style={{ textAlign: "center" }}
+        >
+          Don't have an account?{" "}
           <Link href="#" id="registeredLink">
             Register here
           </Link>
@@ -65,6 +88,5 @@ const LoginPage = () => {
     </div>
   );
 };
-
 
 export default LoginPage;
