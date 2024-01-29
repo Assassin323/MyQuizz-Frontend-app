@@ -1,0 +1,34 @@
+/* ViewFile.css */
+.view-file-container {
+  display: grid;
+  grid-template-rows: 1fr auto; /* Use grid with 1fr for the cards and auto for the button */
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  padding: 0.7em;
+}
+
+.cards-container {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust column width as needed */
+  max-width: 1000px; /* Limit the maximum width of the card container */
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+.back-button {
+  margin: 2em;
+  width: 120px; /* Set a specific width for the button */
+  justify-self: center;
+
+}
+
+.file-card {
+  text-align: center;
+  width: 100%; /* Set a specific width for the cards */
+}
+.custom-toast {
+  background-color: #2196f3; /* Blue background color */
+  color: #ffffff; /* White text color */
+}
