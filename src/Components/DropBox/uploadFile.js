@@ -40,21 +40,16 @@ const UploadFile = () => {
           setErrorMessage('Please select a file to upload.');
           return;
       }
-
       const formData = new FormData();
       formData.append('file', file);
-
       const response = await axios.post('http://localhost:3002/uploadFile', formData, {
           headers: {
               'Content-Type': 'multipart/form-data',
           },
       });
-
-      console.log(response.data); // Log the response from the server
-
       if (response.status === 200) {
-          const fileId = response.data.fileId;
-          navigate(`/viewFile/${fileId}`);
+          // const fileId = response.data.fileId;
+          navigate(`/viewFile`);
       } else {
           setErrorMessage('File upload failed. Please try again.');
       }
@@ -68,7 +63,6 @@ const UploadFile = () => {
     <React.Fragment>
       <CardContent component="div" className="card">
         {!viewFile ? (
-          // Render upload form if not viewing the file
           <React.Fragment>
             <Typography className="card-typo" variant="h3" gutterBottom>
               Upload or Drag and Drop Files
@@ -131,7 +125,6 @@ const UploadFile = () => {
             </CardActions>
           </React.Fragment>
         ) : (
-          // Render ViewFile component when viewing the file
           <ViewFile file={file} goBack={goBack} />
         )}
       </CardContent>

@@ -32,3 +32,10 @@
   background-color: #2196f3; /* Blue background color */
   color: #ffffff; /* White text color */
 }
+.file-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
