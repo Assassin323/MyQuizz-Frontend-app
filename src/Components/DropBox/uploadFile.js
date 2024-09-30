@@ -34,7 +34,8 @@ const UploadFile = () => {
     setViewFile(false);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (e) => {
+    // console.log(e);
     try {
       if (!file) {
           setErrorMessage('Please select a file to upload.');
@@ -53,10 +54,12 @@ const UploadFile = () => {
       } else {
           setErrorMessage('File upload failed. Please try again.');
       }
+      console.log("formdata" + formData);
   } catch (err) {
       console.error('File upload failed', err);
       setErrorMessage('File upload failed. Please try again.');
   }
+  
   };
 
   return (
@@ -118,7 +121,7 @@ const UploadFile = () => {
                 className="upload-button"
                 color="secondary"
                 variant="contained"
-                onClick={handleUpload}
+                onClick={(e) => handleUpload(e)}
               >
                 Upload
               </Button>
