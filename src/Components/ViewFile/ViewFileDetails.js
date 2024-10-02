@@ -30,7 +30,7 @@ const ViewFileDetails = () => {
     const images = doc.getElementsByTagName('img');
     for (const img of images) {
       const src = img.getAttribute('src');
-      img.setAttribute('src', `http://localhost:9120${src}`);
+      img.setAttribute('src', `http://localhost:3002${src}`);
     }
     return doc.documentElement.innerHTML;
   };
@@ -41,8 +41,6 @@ const ViewFileDetails = () => {
   }
 
   const contentWithReplacedPaths = replaceImagePaths(fileDetails.convertedFileContent);
-  console.log('Modified HTML content:');
-
   return (
     <div>
       <h2>{fileDetails.fileName}</h2>
